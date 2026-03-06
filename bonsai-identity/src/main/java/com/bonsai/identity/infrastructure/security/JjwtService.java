@@ -34,8 +34,8 @@ public class JjwtService implements JwtService {
         .issuer(issuer)
         .subject(user.id().value().toString())
         .claim("email", user.email().value())
-        .issuedAt(now)
-        .expiration(now.plus(accessTokenMinutes, ChronoUnit.MINUTES))
+        .issuedAt(java.util.Date.from(now))
+        .expiration(java.util.Date.from(now.plus(accessTokenMinutes, ChronoUnit.MINUTES)))
         .signWith(Keys.hmacShaKeyFor(secret), Jwts.SIG.HS256)
         .compact();
   }
