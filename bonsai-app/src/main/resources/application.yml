@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bonsai-app
+  datasource:
+    url: jdbc:mysql://localhost:3306/bonsai?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    username: bonsai
+    password: bonsai
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+bonsai:
+  security:
+    jwt:
+      issuer: bonsai
+      secret: "CHANGE_ME_CHANGE_ME_CHANGE_ME_CHANGE_ME_CHANGE_ME" # at least 32 chars
+      accessTokenMinutes: 60
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
